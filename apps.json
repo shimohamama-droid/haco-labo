@@ -1,0 +1,86 @@
+[
+  {
+    "id": "001",
+    "name": "HACO Pet",
+    "desc": "ãããå¥åº·ç®¡ç",
+    "appleId": "6761163943",
+    "status": "live"
+  },
+  {
+    "id": "002",
+    "name": "HACO Watch",
+    "desc": "æè¨ã³ã¬ã¯ã·ã§ã³",
+    "appleId": "6761672859",
+    "status": "live"
+  },
+  {
+    "id": "003",
+    "name": "HACO SUPPLE",
+    "desc": "ãµããªç®¡ç",
+    "appleId": "6761284730",
+    "status": "live"
+  },
+  {
+    "id": "004",
+    "name": "HACO PERFUME",
+    "desc": "é¦æ°´ã³ã¬ã¯ã·ã§ã³",
+    "appleId": "6760983145",
+    "status": "live"
+  },
+  {
+    "id": "005",
+    "name": "HACO PLANTS",
+    "desc": "æ¤ç©ç®¡ç",
+    "appleId": "6761411222",
+    "status": "live"
+  },
+  {
+    "id": "006",
+    "name": "HACO SHOES",
+    "desc": "ã·ã¥ã¼ãºç®¡ç",
+    "appleId": "6761321216",
+    "status": "live"
+  },
+  {
+    "id": "007",
+    "name": "HACO COSME",
+    "desc": "ã³ã¹ã¡ç®¡ç",
+    "appleId": "6761446178",
+    "status": "soon"
+  },
+  {
+    "id": "008",
+    "name": "HACO Side Money",
+    "desc": "å¯æ¥­åå¥ã®è¦ããå",
+    "appleId": "6760634061",
+    "status": "soon"
+  },
+  {
+    "id": "009",
+    "name": "HACOãã©ãå¥åº·æå¸³",
+    "desc": "å­ã©ãã®å¥åº¸è¨é²",
+    "appleId": "6761359841",
+    "status": "soon"
+  },
+  {
+    "id": "010",
+    "name": "HACOWISH",
+    "desc": "æ¬²ãããã®ãªã¹ã",
+    "appleId": "6761754227",
+    "status": "soon"
+  },
+  {
+    "id": "011",
+    "name": "HACO LUNCH",
+    "desc": "ãå¼å½è¨é²",
+    "appleId": "6761794696",
+    "status": "soon"
+  },
+  {
+    "id": "012",
+    "name": "HACO FIGURE",
+    "desc": "ãã£ã®ã¥ã¢ã³ã¬ã¯ã·ã§ã³",
+    "appleId": "6761713093",
+    "status": "soon"
+  }
+]
