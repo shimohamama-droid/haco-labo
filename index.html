@@ -194,6 +194,30 @@
     border-color: var(--soon-border);
   }
 
+  .support-section {
+    text-align: center;
+    padding: 2.5rem 2rem 1rem;
+  }
+
+  .support-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: none;
+    padding: 10px 24px;
+    border: 1px solid var(--accent);
+    border-radius: 24px;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .support-link:hover {
+    background: var(--accent);
+    color: #fff;
+  }
+
   footer {
     text-align: center;
     padding: 3rem 2rem;
@@ -217,15 +241,19 @@
 
 <header>
   <div class="brand">HACO LABO</div>
-  <div class="tagline">HACOãéããã¨ãã¡ãã£ã¨ä¾¿å©ã</div>
+  <div class="tagline">HACOを開けると、ちょっと便利。</div>
 </header>
 
 <div class="section-header">
-  <div class="section-sub">å°ããªã¢ããªã®ç©å·ç®±</div>
-  <div class="section-title"><strong>HACO</strong> å³é</div>
+  <div class="section-sub">小さなアプリの玩具箱</div>
+  <div class="section-title"><strong>HACO</strong> 図鑑</div>
 </div>
 
 <div class="grid" id="app-grid">
+</div>
+
+<div class="support-section">
+  <a class="support-link" href="https://hacosupport-zj4zwoua.manus.space/" target="_blank">【サポート】</a>
 </div>
 
 <footer>HACO LABO.</footer>
@@ -259,7 +287,7 @@ async function buildCard(app) {
     : placeholderIcon();
 
   const badgeHtml = app.status === 'live'
-    ? `<a class="badge badge-live" href="https://apps.apple.com/jp/app/id${app.appleId}" target="_blank">App Store â</a>`
+    ? `<a class="badge badge-live" href="https://apps.apple.com/jp/app/id${app.appleId}" target="_blank">App Store ↗</a>`
     : `<span class="badge badge-soon">Coming Soon...</span>`;
 
   card.innerHTML = `
