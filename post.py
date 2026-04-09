@@ -1,10 +1,8 @@
 import os
-import json
 import tweepy
-import anthropic
+from openai import OpenAI
 from datetime import datetime
 
-# アプリリスト
 APPS = [
     {"name": "HACO PLANTS", "desc": "植物管理アプリ", "desc_en": "Plant collection manager", "url": "https://apps.apple.com/jp/app/id6761411222"},
     {"name": "HACO SHOES", "desc": "靴コレクション管理", "desc_en": "Shoe collection manager", "url": "https://apps.apple.com/jp/app/id6761321216"},
@@ -24,10 +22,9 @@ app = APPS[day_index]
 hour = datetime.utcnow().hour
 is_morning = hour < 6  # UTC 0時 = JST 9時
 
-client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 
 if is_morning:
-    # 朝：日本語投稿
     prompt = f"""
 以下のiOSアプリのX投稿文を1つ書いてください。
 
@@ -41,9 +38,9 @@ URL: {app['url']}
 - ハッシュタグを2個（#HACOLABO とアプリ関連1個）
 - URLを末尾に
 - 共感できる自然な日本語で
+- 投稿文のみ出力すること
 """
 else:
-    # 夜：英語投稿
     prompt = f"""
 Write one X (Twitter) post for the following iOS app.
 
@@ -58,15 +55,16 @@ Rules:
 - URL at the end
 - Natural, relatable tone (not salesy)
 - In English
+- Output the post text only
 """
 
-message = client.messages.create(
-    model="claude-haiku-4-5-20251001",
+response = client.chat.completions.create(
+    model="gpt-4o-mini",
+    messages=[{"role": "user", "content": prompt}],
     max_tokens=300,
-    messages=[{"role": "user", "content": prompt}]
 )
 
-tweet_text = message.content[0].text.strip()
+tweet_text = response.choices[0].message.content.strip()
 
 x_client = tweepy.Client(
     consumer_key=os.environ["X_API_KEY"],
