@@ -2,8 +2,28 @@ name: Post to X
 
 on:
   schedule:
-    - cron: '0 0 * * *'   # 朝9時 JST
-    - cron: '0 12 * * *'  # 夜9時 JST
+    # 日本語投稿 JST 6-15時 (UTC 21-6時) 10回
+    - cron: '0 21 * * *'
+    - cron: '0 22 * * *'
+    - cron: '0 23 * * *'
+    - cron: '0 0 * * *'
+    - cron: '0 1 * * *'
+    - cron: '0 2 * * *'
+    - cron: '0 3 * * *'
+    - cron: '0 4 * * *'
+    - cron: '0 5 * * *'
+    - cron: '0 6 * * *'
+    # 英語投稿 JST 16-25時 (UTC 7-16時) 10回
+    - cron: '0 7 * * *'
+    - cron: '0 8 * * *'
+    - cron: '0 9 * * *'
+    - cron: '0 10 * * *'
+    - cron: '0 11 * * *'
+    - cron: '0 12 * * *'
+    - cron: '0 13 * * *'
+    - cron: '0 14 * * *'
+    - cron: '0 15 * * *'
+    - cron: '0 16 * * *'
   workflow_dispatch:
 
 jobs:
