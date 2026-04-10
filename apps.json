@@ -46,41 +46,48 @@
     "name": "HACO COSME",
     "desc": "コスメ管理",
     "appleId": "6761446178",
-    "status": "soon"
+    "status": "live"
   },
   {
     "id": "008",
     "name": "HACO Side Money",
     "desc": "副業収入の見える化",
     "appleId": "6760634061",
-    "status": "soon"
+    "status": "review"
   },
   {
     "id": "009",
     "name": "HACOこども健康手帳",
     "desc": "子どもの健康記録",
     "appleId": "6761359841",
-    "status": "soon"
+    "status": "live"
   },
   {
     "id": "010",
-    "name": "HACOWISH",
+    "name": "HACO WISH",
     "desc": "欲しいものリスト",
     "appleId": "6761754227",
-    "status": "soon"
+    "status": "live"
   },
   {
     "id": "011",
     "name": "HACO LUNCH",
     "desc": "お弁当記録",
     "appleId": "6761794696",
-    "status": "soon"
+    "status": "live"
   },
   {
     "id": "012",
     "name": "HACO FIGURE",
     "desc": "フィギュアコレクション",
     "appleId": "6761713093",
-    "status": "soon"
+    "status": "live"
+  },
+  {
+    "id": "013",
+    "name": "HACO HOME",
+    "desc": "家のメンテナンス管理",
+    "appleId": "6761870347",
+    "status": "review"
   }
 ]
