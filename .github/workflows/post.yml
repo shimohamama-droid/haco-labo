@@ -1,45 +1,42 @@
 name: Post to X
-
 on:
   schedule:
-    # 日本語投稿 JST 6-15時 (UTC 21-6時) 10回
-    - cron: '0 21 * * *'
-    - cron: '0 22 * * *'
-    - cron: '0 23 * * *'
-    - cron: '0 0 * * *'
-    - cron: '0 1 * * *'
-    - cron: '0 2 * * *'
-    - cron: '0 3 * * *'
-    - cron: '0 4 * * *'
-    - cron: '0 5 * * *'
-    - cron: '0 6 * * *'
-    # 英語投稿 JST 16-25時 (UTC 7-16時) 10回
-    - cron: '0 7 * * *'
-    - cron: '0 8 * * *'
-    - cron: '0 9 * * *'
-    - cron: '0 10 * * *'
-    - cron: '0 11 * * *'
-    - cron: '0 12 * * *'
-    - cron: '0 13 * * *'
-    - cron: '0 14 * * *'
-    - cron: '0 15 * * *'
-    - cron: '0 16 * * *'
+    # 日本語投稿 JST 6時〜16時 (UTC 21〜7時) 11回
+    - cron: '0 21 * * *'   # JST 6:00
+    - cron: '0 22 * * *'   # JST 7:00
+    - cron: '0 23 * * *'   # JST 8:00
+    - cron: '0 0 * * *'    # JST 9:00
+    - cron: '0 1 * * *'    # JST 10:00
+    - cron: '0 2 * * *'    # JST 11:00
+    - cron: '0 3 * * *'    # JST 12:00
+    - cron: '0 4 * * *'    # JST 13:00
+    - cron: '0 5 * * *'    # JST 14:00
+    - cron: '0 6 * * *'    # JST 15:00
+    - cron: '0 7 * * *'    # JST 16:00
+    # 英語投稿 JST 17時〜27時(翌3時) (UTC 8〜18時) 11回
+    - cron: '0 8 * * *'    # JST 17:00
+    - cron: '0 9 * * *'    # JST 18:00
+    - cron: '0 10 * * *'   # JST 19:00
+    - cron: '0 11 * * *'   # JST 20:00
+    - cron: '0 12 * * *'   # JST 21:00
+    - cron: '0 13 * * *'   # JST 22:00
+    - cron: '0 14 * * *'   # JST 23:00
+    - cron: '0 15 * * *'   # JST 0:00
+    - cron: '0 16 * * *'   # JST 1:00
+    - cron: '0 17 * * *'   # JST 2:00
+    - cron: '0 18 * * *'   # JST 3:00
   workflow_dispatch:
-
 jobs:
   post:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-
       - name: Install dependencies
         run: pip install tweepy openai
-
       - name: Run post script
         env:
           X_API_KEY: ${{ secrets.X_API_KEY }}
