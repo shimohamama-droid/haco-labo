@@ -1,11 +1,11 @@
 import os
 import tweepy
 
-# 環境変数からXのAPIキーを取得
+# 環境変数からXのAPIキーを取得（既存のpost.pyと同じSecrets名を使用）
 API_KEY = os.environ["X_API_KEY"]
 API_SECRET = os.environ["X_API_SECRET"]
 ACCESS_TOKEN = os.environ["X_ACCESS_TOKEN"]
-ACCESS_SECRET = os.environ["X_ACCESS_SECRET"]
+ACCESS_SECRET = os.environ["X_ACCESS_TOKEN_SECRET"]
 
 # 投稿文（固定）
 TWEET_TEXT = """何から動けばいいかわからない時って、
