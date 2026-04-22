@@ -1,26 +1,11 @@
 name: Post to X
 on:
   schedule:
-    # 日本語投稿 JST 7時〜12時（UTC 22〜3時）6回
-    - cron: '0 22 * * *'  # JST 7:00
+    # 日本語投稿（こども健康手帳）
     - cron: '0 23 * * *'  # JST 8:00
-    - cron: '0 0 * * *'   # JST 9:00
-    - cron: '0 1 * * *'   # JST 10:00
-    - cron: '0 2 * * *'   # JST 11:00
-    - cron: '0 3 * * *'   # JST 12:00
-    # 英語投稿 JST 13時〜24時(翌0時)（UTC 4〜15時）12回
-    - cron: '0 4 * * *'   # JST 13:00
-    - cron: '0 5 * * *'   # JST 14:00
-    - cron: '0 6 * * *'   # JST 15:00
-    - cron: '0 7 * * *'   # JST 16:00
-    - cron: '0 8 * * *'   # JST 17:00
-    - cron: '0 9 * * *'   # JST 18:00
-    - cron: '0 10 * * *'  # JST 19:00
-    - cron: '0 11 * * *'  # JST 20:00
-    - cron: '0 12 * * *'  # JST 21:00
-    - cron: '0 13 * * *'  # JST 22:00
-    - cron: '0 14 * * *'  # JST 23:00
-    - cron: '0 15 * * *'  # JST 24:00
+    # 英語投稿（米国ターゲット）
+    - cron: '0 13 * * *'  # JST 22:00 / 米東部 9:00（米朝）
+    - cron: '0 18 * * *'  # JST 3:00 / 米東部 14:00（米ランチ〜午後）
   workflow_dispatch:
 jobs:
   post:
