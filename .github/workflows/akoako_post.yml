@@ -1,43 +1,57 @@
 name: AKOAKO Post to X
+
 on:
   schedule:
-    # 通常投稿 毎日 JST 12:00 (UTC 3:00)
-    - cron: '0 3 * * *'
-    # 楽天ポイントDay 5・10・15・20・25・30日 JST 10:00 (UTC 1:00)
-    - cron: '0 1 5,10,15,20,25,30 * *'
+    # 毎日 JST 20:00 (UTC 11:00) — haco_post.yml (JST 21:00) と1時間ずらす
+    - cron: '0 11 * * *'
   workflow_dispatch:
     inputs:
-      mode:
-        description: 'normal or point_day'
-        default: 'normal'
+      dry_run:
+        description: 'dry-run（投稿しない、文章確認のみ）'
+        type: boolean
+        default: false
+      date:
+        description: '対象日付 YYYY-MM-DD（省略時は今日）'
+        default: ''
 
 jobs:
   post:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+
       - name: Install dependencies
-        run: pip install tweepy openai
-      - name: Determine mode
-        id: mode
-        run: |
-          DAY=$(TZ=Asia/Tokyo date +%-d)
-          HOUR_UTC=$(date +%-H)
-          if [[ "$HOUR_UTC" == "1" && ("$DAY" == "5" || "$DAY" == "10" || "$DAY" == "15" || "$DAY" == "20" || "$DAY" == "25" || "$DAY" == "30") ]]; then
-            echo "AKOAKO_MODE=point_day" >> $GITHUB_ENV
-          else
-            echo "AKOAKO_MODE=normal" >> $GITHUB_ENV
-          fi
+        run: pip install -r requirements_akoako.txt
+
       - name: Run AKOAKO post script
         env:
-          X_API_KEY: ${{ secrets.X_API_KEY }}
-          X_API_SECRET: ${{ secrets.X_API_SECRET }}
-          X_ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          X_API_KEY:             ${{ secrets.X_API_KEY }}
+          X_API_SECRET:          ${{ secrets.X_API_SECRET }}
+          X_ACCESS_TOKEN:        ${{ secrets.X_ACCESS_TOKEN }}
           X_ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          AKOAKO_MODE: ${{ env.AKOAKO_MODE }}
-        run: python akoako_post.py
+          ANTHROPIC_API_KEY:     ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          ARGS=""
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            ARGS="$ARGS --dry-run"
+          fi
+          if [ -n "${{ github.event.inputs.date }}" ]; then
+            ARGS="$ARGS --date ${{ github.event.inputs.date }}"
+          fi
+          python akoako_post.py $ARGS
+
+      - name: Commit posted_log.json
+        # dry-run 時はコミットしない
+        if: github.event.inputs.dry_run != 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add posted_log.json
+          git diff --staged --quiet || git commit -m "chore: update posted_log [skip ci]"
+          git push
