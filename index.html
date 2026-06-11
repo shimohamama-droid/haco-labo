@@ -259,15 +259,23 @@
 <footer>HACO LABO.</footer>
 
 <script>
-async function fetchAppIcon(appleId) {
-  try {
-    const res = await fetch(`https://itunes.apple.com/lookup?id=${appleId}&country=jp`);
+// アイコンは1リクエストで一括取得する（個別に取るとAppleのレート制限で歯抜けになる）
+async function fetchAllIcons(appleIds) {
+  const map = {};
+  async function lookup(ids, country) {
+    const url = `https://itunes.apple.com/lookup?id=${ids.join(',')}` + (country ? `&country=${country}` : '');
+    const res = await fetch(url);
     const data = await res.json();
-    if (data.results && data.results.length > 0) {
-      return data.results[0].artworkUrl100 || null;
+    for (const r of (data.results || [])) {
+      map[String(r.trackId)] = r.artworkUrl100 || null;
     }
-  } catch (e) {}
-  return null;
+  }
+  try { await lookup(appleIds, 'jp'); } catch (e) {}
+  const missing = appleIds.filter(id => !map[id]);
+  if (missing.length) {
+    try { await lookup(missing, null); } catch (e) {}
+  }
+  return map;
 }
 
 function placeholderIcon() {
@@ -299,7 +307,7 @@ async function buildCard(app) {
     }
   } else {
     badgeHtml = app.status === 'live'
-      ? `<a class="badge badge-live" href="https://apps.apple.com/jp/app/id${app.appleId}" target="_blank">App Store ↗</a>`
+      ? `<a class="badge badge-live" href="https://apps.apple.com/app/id${app.appleId}" target="_blank">App Store ↗</a>`
       : `<span class="badge badge-soon">Coming Soon...</span>`;
   }
 
@@ -324,13 +332,17 @@ async function init() {
     grid.appendChild(card);
   }
 
-  for (const app of apps) {
-    if (app.status === 'live' && app.appleId) {
-      const iconUrl = await fetchAppIcon(app.appleId);
-      const img = document.getElementById(`icon-${app.appleId}`);
-      if (img && iconUrl) {
-        img.src = iconUrl;
-      } else if (img) {
+  const liveIds = apps
+    .filter(app => app.status === 'live' && app.appleId)
+    .map(app => app.appleId);
+  if (liveIds.length) {
+    const iconMap = await fetchAllIcons(liveIds);
+    for (const id of liveIds) {
+      const img = document.getElementById(`icon-${id}`);
+      if (!img) continue;
+      if (iconMap[id]) {
+        img.src = iconMap[id];
+      } else {
         img.parentElement.outerHTML = placeholderIcon();
       }
     }
