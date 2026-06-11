@@ -1,0 +1,156 @@
+[
+  {
+    "id": "001",
+    "name": "HACO Pet",
+    "desc": "ペット健康管理",
+    "appleId": "6761163943",
+    "status": "live"
+  },
+  {
+    "id": "002",
+    "name": "HACO Watch",
+    "desc": "時計コレクション",
+    "appleId": "6761672859",
+    "status": "live"
+  },
+  {
+    "id": "003",
+    "name": "HACO SUPPLE",
+    "desc": "サプリ管理",
+    "appleId": "6761284730",
+    "status": "live"
+  },
+  {
+    "id": "004",
+    "name": "HACO PERFUME",
+    "desc": "香水コレクション",
+    "appleId": "6760983145",
+    "status": "live"
+  },
+  {
+    "id": "005",
+    "name": "HACO PLANTS",
+    "desc": "植物管理",
+    "appleId": "6761411222",
+    "status": "live"
+  },
+  {
+    "id": "006",
+    "name": "HACO SHOES",
+    "desc": "シューズ管理",
+    "appleId": "6761321216",
+    "status": "live"
+  },
+  {
+    "id": "007",
+    "name": "HACO COSME",
+    "desc": "コスメ管理",
+    "appleId": "6761446178",
+    "status": "live"
+  },
+  {
+    "id": "008",
+    "name": "HACO Side Money",
+    "desc": "副業収入の見える化",
+    "appleId": "6760634061",
+   "status": "live"
+  },
+  {
+    "id": "009",
+    "name": "HACOこども健康手帳",
+    "desc": "子どもの健康記録",
+    "appleId": "6761359841",
+    "status": "live"
+  },
+  {
+    "id": "010",
+    "name": "HACO WISH",
+    "desc": "欲しいものリスト",
+    "appleId": "6761754227",
+    "status": "live"
+  },
+  {
+    "id": "011",
+    "name": "HACO LUNCH",
+    "desc": "お弁当記録",
+    "appleId": "6761794696",
+    "status": "live"
+  },
+  {
+    "id": "012",
+    "name": "HACO FIGURE",
+    "desc": "フィギュアコレクション",
+    "appleId": "6761713093",
+    "status": "live"
+  },
+  {
+    "id": "013",
+    "name": "HACO HOME",
+    "desc": "家のメンテナンス管理",
+    "appleId": "6761870347",
+    "status": "live"
+  },
+  {
+    "id": "014",
+    "name": "HACO My Shelf",
+    "desc": "コレクション棚",
+    "appleId": "6762028730",
+    "status": "live"
+  },
+  {
+    "id": "015",
+    "name": "HACO DESDAY",
+    "desc": "生存可能日数の電卓",
+    "appleId": "6762077816",
+    "status": "live"
+  },
+  {
+    "id": "016",
+    "name": "HACO DANSHARI",
+    "desc": "断捨離記録",
+    "appleId": "6762079882",
+    "status": "live"
+  },
+  {
+    "id": "017",
+    "name": "HACO CARD",
+    "desc": "トレカコレクション",
+    "appleId": "6761989730",
+    "status": "live"
+  },
+  {
+    "id": "018",
+    "name": "HACO ACCESSORY",
+    "desc": "アクセサリー管理",
+    "appleId": "6761980946",
+    "status": "live"
+  },
+  {
+    "id": "019",
+    "name": "HACO MIND",
+    "desc": "思いつきメモ",
+    "appleId": "6761976675",
+    "status": "live"
+  },
+  {
+    "id": "020",
+    "name": "HACO LOG",
+    "desc": "映画・本・サブスク記録",
+    "appleId": "6761961898",
+    "status": "live"
+  },
+  {
+    "id": "021",
+    "name": "楽天レビュー分析",
+    "desc": "レビューをAIで深掘り分析",
+    "type": "web",
+    "status": "soon"
+  },
+  {
+    "id": "022",
+    "name": "TASK-UNIT",
+    "desc": "付箋ボード式タスク管理",
+    "type": "web",
+    "status": "soon"
+  }
+]
