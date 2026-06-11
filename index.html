@@ -282,13 +282,22 @@ async function buildCard(app) {
   const card = document.createElement('div');
   card.className = 'app-card';
 
-  const iconHtml = app.status === 'live'
+  const isWeb = app.type === 'web';
+
+  const iconHtml = (app.status === 'live' && app.appleId)
     ? `<div class="app-icon-wrap"><img src="" alt="${app.name}" id="icon-${app.appleId}" /></div>`
     : placeholderIcon();
 
-  const badgeHtml = app.status === 'live'
-    ? `<a class="badge badge-live" href="https://apps.apple.com/jp/app/id${app.appleId}" target="_blank">App Store ↗</a>`
-    : `<span class="badge badge-soon">Coming Soon...</span>`;
+  let badgeHtml;
+  if (isWeb) {
+    badgeHtml = app.url
+      ? `<a class="badge badge-live" href="${app.url}" target="_blank">Web App ↗</a>`
+      : `<span class="badge badge-soon">Web App / Soon</span>`;
+  } else {
+    badgeHtml = app.status === 'live'
+      ? `<a class="badge badge-live" href="https://apps.apple.com/jp/app/id${app.appleId}" target="_blank">App Store ↗</a>`
+      : `<span class="badge badge-soon">Coming Soon...</span>`;
+  }
 
   card.innerHTML = `
     <div class="app-num">${app.id}</div>
@@ -312,7 +321,7 @@ async function init() {
   }
 
   for (const app of apps) {
-    if (app.status === 'live') {
+    if (app.status === 'live' && app.appleId) {
       const iconUrl = await fetchAppIcon(app.appleId);
       const img = document.getElementById(`icon-${app.appleId}`);
       if (img && iconUrl) {
