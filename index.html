@@ -290,9 +290,13 @@ async function buildCard(app) {
 
   let badgeHtml;
   if (isWeb) {
-    badgeHtml = app.url
-      ? `<a class="badge badge-live" href="${app.url}" target="_blank">Web App ↗</a>`
-      : `<span class="badge badge-soon">Web App / Soon</span>`;
+    if (app.download) {
+      badgeHtml = `<a class="badge badge-live" href="${app.download}" download>Download ↓</a>`;
+    } else if (app.url) {
+      badgeHtml = `<a class="badge badge-live" href="${app.url}" target="_blank">Web App ↗</a>`;
+    } else {
+      badgeHtml = `<span class="badge badge-soon">Web App / Soon</span>`;
+    }
   } else {
     badgeHtml = app.status === 'live'
       ? `<a class="badge badge-live" href="https://apps.apple.com/jp/app/id${app.appleId}" target="_blank">App Store ↗</a>`

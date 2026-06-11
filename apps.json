@@ -144,13 +144,15 @@
     "name": "楽天レビュー分析",
     "desc": "レビューをAIで深掘り分析",
     "type": "web",
-    "status": "soon"
+    "status": "live",
+    "download": "downloads/rakuten-review-analyzer.zip"
   },
   {
     "id": "022",
     "name": "TASK-UNIT",
     "desc": "付箋ボード式タスク管理",
     "type": "web",
-    "status": "soon"
+    "status": "live",
+    "download": "downloads/task-unit.zip"
   }
 ]
